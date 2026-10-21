@@ -3,11 +3,15 @@ package com.example.backend1.models;
 import com.example.backend1.models.enums.RolUsuario;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "usuarios")
@@ -27,8 +31,9 @@ public class Usuarios {
     @Column(nullable = false)
     private RolUsuario rol;
 
-    @Column(nullable = false)
-    private LocalDateTime fechaDeRegistro = LocalDateTime.now();
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime fechaDeRegistro;
 
     @Column(nullable = false)
     private Boolean activo = true;
