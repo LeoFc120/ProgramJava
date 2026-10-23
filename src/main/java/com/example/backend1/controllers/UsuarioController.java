@@ -24,7 +24,7 @@ public class UsuarioController {
         // Usa la variable de instancia en minúsculas (usuarioService), no el nombre de la Clase con mayúscula
         Usuarios nuevoUsuario = usuarioService.guardar(usuario);
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                   .status(HttpStatus.CREATED)
                 .body(nuevoUsuario);
     }
     @GetMapping
