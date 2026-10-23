@@ -25,4 +25,21 @@ public class JwtService {
                 .signWith(SECRET_KEY) // Firmado criptográficamente
                 .compact();
     }
+    public String extractUsername(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject(); // Extrae el correo que guardamos al hacer login
+    }
+
+    public boolean isTokenValid(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
+            return true; // El token es real y no ha caducado
+        } catch (Exception e) {
+            return false; // El token es falso o ya expiró
+        }
+    }
 }
